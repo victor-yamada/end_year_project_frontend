@@ -1,0 +1,44 @@
+<div>
+  <h2>Restaurant Registration</h2>
+  <form (ngSubmit)="onSubmit()" #restaurantForm="ngForm" #formElement>
+    <div class="form-group">
+      <input type="text" id="restaurantName" class="form-control" [(ngModel)]="restaurantName" name="restaurantName" placeholder="Nom du restaurant" required #name="ngModel">
+      <div *ngIf="name.invalid && name.touched" class="text-danger">
+        Le nom du restaurant est requis.
+      </div>
+    </div>
+    <div class="form-group">
+      <select id="restaurantType" class="form-control" [(ngModel)]="restaurantType" name="restaurantType" required #type="ngModel">
+        <option value="" disabled selected hidden>Sélectionner le type</option>
+        <option value="Fast Food">Fast Food</option>
+        <option value="Restaurant gastronomique">Restaurant gastronomique</option>
+        <option value="Café/Bistro">Café/Bistro</option>
+        <option value="Pizzeria">Pizzeria</option>
+        <option value="Restaurant asiatique">Restaurant asiatique</option>
+        <option value="Restaurant végétarien">Restaurant végétarien</option>
+      </select>
+      <div *ngIf="type.invalid && type.touched" class="text-danger">
+        Le type de restaurant est requis.
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" id="restaurantAddress" class="form-control" [(ngModel)]="restaurantAddress" name="restaurantAddress" placeholder="Adresse du restaurant" required #address="ngModel">
+      <div *ngIf="address.invalid && address.touched" class="text-danger">
+        L'adresse du restaurant est requise.
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="tel" id="restaurantPhoneNumber" class="form-control" [(ngModel)]="restaurantPhoneNumber" name="restaurantPhoneNumber" placeholder="Numéro de téléphone du restaurant" required #phone="ngModel">
+      <div *ngIf="phone.invalid && phone.touched" class="text-danger">
+        Le numéro de téléphone du restaurant est requis.
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" id="restaurantHours" class="form-control" [(ngModel)]="restaurantHours" name="restaurantHours" placeholder="Horaires d'ouverture du restaurant" required #hours="ngModel">
+      <div *ngIf="hours.invalid && hours.touched" class="text-danger">
+        Les horaires d'ouverture du restaurant sont requis.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="restaurantForm.invalid">S'inscrire</button>
+  </form>
+</div>

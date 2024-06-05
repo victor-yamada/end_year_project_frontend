@@ -1,0 +1,53 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <!-- Username field -->
+  <div class="form-group">
+    <input type="text" id="username" formControlName="username" placeholder="Entrez le nom d'utilisateur" class="form-control">
+    <div *ngIf="registrationForm.get('username')?.errors && (registrationForm.get('username')?.dirty || registrationForm.get('username')?.touched)">
+      <div *ngIf="registrationForm.get('username')?.errors?.['required']">
+        Le nom d'utilisateur est requis.
+      </div>
+    </div>
+  </div>
+  
+  <!-- Email field -->
+  <div class="form-group">
+    <input type="email" id="email" formControlName="email" placeholder="Entrez l'email" class="form-control">
+    <div *ngIf="registrationForm.get('email')?.errors && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
+      <div *ngIf="registrationForm.get('email')?.errors?.['required']">
+        L'email est requis.
+      </div>
+      <div *ngIf="registrationForm.get('email')?.errors?.['email']">
+        L'email doit être une adresse email valide.
+      </div>
+    </div>
+  </div>
+  
+  <!-- Password field -->
+  <div class="form-group">
+    <input type="password" id="password" formControlName="password" placeholder="Entrez le mot de passe" class="form-control">
+    <div *ngIf="registrationForm.get('password')?.errors && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
+      <div *ngIf="registrationForm.get('password')?.errors?.['required']">
+        Le mot de passe est requis.
+      </div>
+      <div *ngIf="registrationForm.get('password')?.errors?.['minlength']">
+        Le mot de passe doit contenir au moins 6 caractères.
+      </div>
+    </div>
+  </div>
+  
+  <!-- Confirm Password field -->
+  <div class="form-group">
+    <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirmez le mot de passe" class="form-control">
+    <div *ngIf="registrationForm.get('confirmPassword')?.errors && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)">
+      <div *ngIf="registrationForm.get('confirmPassword')?.errors?.['required']">
+        La confirmation du mot de passe est requise.
+      </div>
+      <div *ngIf="registrationForm.errors?.['passwordMismatch']">
+        Les mots de passe doivent correspondre.
+      </div>
+    </div>
+  </div>
+  
+  <button type="submit" [disabled]="registrationForm.invalid">S'inscrire</button>
+</form>
+<button class="btn btn-secondary" routerLink="/restaurant-registration">Restaurant</button>
